@@ -16,7 +16,6 @@ public class PedidoResponseDto {
     private String formaPagamento;
     private BigDecimal valorTotal;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }

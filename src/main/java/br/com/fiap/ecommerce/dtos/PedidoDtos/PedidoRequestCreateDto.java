@@ -8,7 +8,7 @@ import org.modelmapper.ModelMapper;
 import br.com.fiap.ecommerce.model.Pedido;
 
 public class PedidoRequestCreateDto {
-
+    
     private Long idCliente;
     private LocalDate dataPedido;
     private String status;

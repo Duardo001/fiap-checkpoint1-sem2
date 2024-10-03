@@ -20,31 +20,31 @@ public class ClienteRequestCreateDto {
     public Cliente toModel() {
         return modelMapper.map(this, Cliente.class);
     }
-
+    
     public String getNome() {
         return nome;
     }
-
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    
     public String getCep() {
         return cep;
     }
-
+    
     public void setCep(String cep) {
         this.cep = cep;
     }
-
+    
     public String getLogradouro() {
         return logradouro;
     }
-
+    
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
-
+    
     public String getNumero() {
         return numero;
     }

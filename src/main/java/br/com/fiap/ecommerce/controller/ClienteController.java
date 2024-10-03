@@ -41,7 +41,8 @@ public class ClienteController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(
-                        new ClienteResponseDto().toDto(clienteService.save(dto.toModel())));
+                        new ClienteResponseDto().toDto(
+                                clienteService.save(dto.toModel())));
     }
 
     @PutMapping("{id}")

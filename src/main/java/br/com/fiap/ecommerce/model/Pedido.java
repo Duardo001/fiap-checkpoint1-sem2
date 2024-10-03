@@ -8,8 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "pedido")
 public class Pedido {
 
 	@Id
@@ -22,13 +24,13 @@ public class Pedido {
     @Column(columnDefinition = "DATE")
     private LocalDate dataPedido;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 20)
     private String status;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
     private String formaPagamento;
 
-    @Column(precision = 16, scale = 2)
+    @Column(nullable = false, precision = 16, scale = 2)
     private BigDecimal valorTotal;
 
     public Long getId() {

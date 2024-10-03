@@ -7,8 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "item_pedido")
 public class ItemPedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +19,13 @@ public class ItemPedido {
     @Column(nullable = false)
     private Long idPedido;
 
+    @Column(nullable = false)
     private Long idProduto;
 
-    @Column(precision = 16, scale = 2)
+    @Column(nullable = false, precision = 20)
     private BigDecimal quantidade;
 
-    @Column(precision = 16, scale = 2)
+    @Column(nullable = false, precision = 16, scale = 2)
     private BigDecimal valorTotal;
 
     public Long getId() {

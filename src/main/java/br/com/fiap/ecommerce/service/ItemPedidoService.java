@@ -37,14 +37,10 @@ public class ItemPedidoService {
 
     public ItemPedido update(ItemPedido itemPedido) {
         Optional<ItemPedido> itemOpcional = itemPedidoRepository.findById(itemPedido.getId());
-        if (itemOpcional.isPresent()) {
             ItemPedido itemExistente = itemOpcional.get();
             itemExistente.setQuantidade(itemPedido.getQuantidade());
             itemExistente.setValorTotal(itemPedido.getValorTotal());
             return itemPedidoRepository.save(itemExistente);
-        } else {
-            throw new RuntimeException("Id não encontrado");
-        }
     }
 
 }

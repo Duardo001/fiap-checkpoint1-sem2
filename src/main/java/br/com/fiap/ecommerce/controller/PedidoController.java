@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.ecommerce.dtos.PedidoDtos.PedidoRequestCreateDto;
 import br.com.fiap.ecommerce.dtos.PedidoDtos.PedidoRequestUpdateDto;
 import br.com.fiap.ecommerce.dtos.PedidoDtos.PedidoResponseDto;
-import br.com.fiap.ecommerce.model.Pedido;
 import br.com.fiap.ecommerce.service.PedidoService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
@@ -39,13 +38,6 @@ public class PedidoController {
 
     @PostMapping
     public ResponseEntity<PedidoResponseDto> create(@RequestBody PedidoRequestCreateDto dto) {
-        System.out.println("DTO recebido: " + dto);
-
-        Pedido pedido = dto.toModel();
-        System.out.println("Pedido gerado: " + pedido); // Verifique se todos os campos estão preenchidos
-
-        Pedido savedPedido = pedidoService.save(pedido);
-        System.out.println("Pedido salvo: " + savedPedido); // Verifique o pedido após o save
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(
@@ -63,8 +55,9 @@ public class PedidoController {
         return ResponseEntity.ok()
                 .body(
                         new PedidoResponseDto().toDto(
-                                pedidoService.save(dto.toModel(id))));
+                            pedidoService.save(dto.toModel(id))));
     }
+
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id) {
