@@ -1,42 +1,24 @@
-package br.com.fiap.ecommerce.model;
+package br.com.fiap.ecommerce.dtos.PedidoDtos;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import org.modelmapper.ModelMapper;
 
-@Entity
-public class Pedido {
+import br.com.fiap.ecommerce.model.Pedido;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class PedidoRequestCreateDto {
 
-    @Column(nullable = false)
     private Long idCliente;
-
-    @Column(columnDefinition = "DATE")
     private LocalDate dataPedido;
-
-    @Column(nullable = false, length = 50)
     private String status;
-
-	@Column(nullable = false)
     private String formaPagamento;
-
-    @Column(precision = 16, scale = 2)
     private BigDecimal valorTotal;
 
-    public Long getId() {
-        return id;
-    }
+    private static final ModelMapper modelMapper = new ModelMapper();
 
-    public void setId(Long id) {
-        this.id = id;
+    public Pedido toModel() {
+        return modelMapper.map(this, Pedido.class);
     }
 
     public Long getIdCliente() {
@@ -79,6 +61,4 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-   
-    
 }

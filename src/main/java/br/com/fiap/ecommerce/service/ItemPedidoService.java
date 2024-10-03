@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.ecommerce.model.ItemPedido;
-import br.com.fiap.ecommerce.model.Produto;
 import br.com.fiap.ecommerce.repository.ItemPedidoRepository;
 
 @Service
@@ -32,8 +31,20 @@ public class ItemPedidoService {
         itemPedidoRepository.deleteById(id);
     }
 
-    public Optional<Produto> findById(Long id) {
+    public Optional<ItemPedido> findById(Long id) {
         return itemPedidoRepository.findById(id);
+    }
+
+    public ItemPedido update(ItemPedido itemPedido) {
+        Optional<ItemPedido> itemOpcional = itemPedidoRepository.findById(itemPedido.getId());
+        if (itemOpcional.isPresent()) {
+            ItemPedido itemExistente = itemOpcional.get();
+            itemExistente.setQuantidade(itemPedido.getQuantidade());
+            itemExistente.setValorTotal(itemPedido.getValorTotal());
+            return itemPedidoRepository.save(itemExistente);
+        } else {
+            throw new RuntimeException("Id não encontrado");
+        }
     }
 
 }
