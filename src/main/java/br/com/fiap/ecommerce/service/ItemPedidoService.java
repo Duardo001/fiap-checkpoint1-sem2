@@ -11,7 +11,7 @@ import br.com.fiap.ecommerce.repository.ItemPedidoRepository;
 
 @Service
 public class ItemPedidoService {
-    
+
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
@@ -19,11 +19,11 @@ public class ItemPedidoService {
         return itemPedidoRepository.findAll();
     }
 
-    public ItemPedido save(ItemPedido itemPedido) {        
+    public ItemPedido save(ItemPedido itemPedido) {
         return itemPedidoRepository.save(itemPedido);
     }
 
-    public boolean existsById(Long id) {        
+    public boolean existsById(Long id) {
         return itemPedidoRepository.existsById(id);
     }
 
@@ -34,13 +34,4 @@ public class ItemPedidoService {
     public Optional<ItemPedido> findById(Long id) {
         return itemPedidoRepository.findById(id);
     }
-
-    public ItemPedido update(ItemPedido itemPedido) {
-        Optional<ItemPedido> itemOpcional = itemPedidoRepository.findById(itemPedido.getId());
-            ItemPedido itemExistente = itemOpcional.get();
-            itemExistente.setQuantidade(itemPedido.getQuantidade());
-            itemExistente.setValorTotal(itemPedido.getValorTotal());
-            return itemPedidoRepository.save(itemExistente);
-    }
-
 }

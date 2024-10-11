@@ -23,7 +23,7 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
-    public boolean existsById(long id) {
+    public boolean existsById(Long id) {
         return pedidoRepository.existsById(id);
     }
 
@@ -34,16 +34,4 @@ public class PedidoService {
     public Optional<Pedido> findById(Long id) {
         return pedidoRepository.findById(id);
     }
-
-    // public Pedido update(Pedido pedido) {
-    //     Optional<Pedido> itemOpcional = pedidoRepository.findById(pedido.getId());
-    //     if (itemOpcional.isPresent()) {
-    //         Pedido pedidoExistente = itemOpcional.get();
-    //         pedidoExistente.setStatus(pedido.getStatus());
-    //         pedidoExistente.setDataPedido(pedido.getDataPedido());
-    //         return pedidoRepository.save(pedidoExistente);
-    //     } else {
-    //         throw new RuntimeException("Id não encontrado");
-    //     }
-    // }
 }

@@ -11,7 +11,7 @@ import br.com.fiap.ecommerce.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
-    
+
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -19,11 +19,11 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente save(Cliente cliente) {        
+    public Cliente save(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
-    public boolean existsById(Long id) {        
+    public boolean existsById(Long id) {
         return clienteRepository.existsById(id);
     }
 
@@ -34,6 +34,4 @@ public class ClienteService {
     public Optional<Cliente> findById(Long id) {
         return clienteRepository.findById(id);
     }
-
 }
-

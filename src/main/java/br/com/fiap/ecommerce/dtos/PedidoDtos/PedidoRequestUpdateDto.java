@@ -19,10 +19,9 @@ public class PedidoRequestUpdateDto {
         this.status = status;
     }
 
-    public Pedido toModel(Long id) {
-        Pedido pedido = modelMapper.map(this, Pedido.class);
-        pedido.setId(id);
-        pedido.setStatus(this.status);
-        return pedido;
-    }
+	public Pedido toModel(Long id) {
+		Pedido result = modelMapper.map(this, Pedido.class);
+        result.setId(id);
+        return result;
+    }  
 }

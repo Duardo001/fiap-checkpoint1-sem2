@@ -21,7 +21,7 @@ import br.com.fiap.ecommerce.model.ItemPedido;
 import br.com.fiap.ecommerce.service.ItemPedidoService;
 
 @RestController
-@RequestMapping("/itenspedidos")
+@RequestMapping("/itemPedidos")
 public class ItemPedidoController {
 
     @Autowired
@@ -53,14 +53,10 @@ public class ItemPedidoController {
         if (!itemPedidoService.existsById(id)) {
             throw new RuntimeException("Id inexistente");
         }
-        ItemPedido itemPedido = new ItemPedido();
-        itemPedido.setId(id);
-        itemPedido.setQuantidade(dto.getQuantidade());
-        itemPedido.setValorTotal(dto.getValorTotal());
-        ItemPedido atualizaItemPedido = itemPedidoService.update(itemPedido);
-
         return ResponseEntity.ok()
-                .body(new ItemPedidoResponseDto().toDto(atualizaItemPedido));
+                .body(
+                        new ItemPedidoResponseDto().toDto(
+                                itemPedidoService.save(dto.toModel(id))));
     }
 
     @DeleteMapping("{id}")
@@ -68,6 +64,7 @@ public class ItemPedidoController {
         if (!itemPedidoService.existsById(id)) {
             throw new RuntimeException("Id inexistente");
         }
+
         itemPedidoService.delete(id);
     }
 
@@ -79,6 +76,7 @@ public class ItemPedidoController {
                                 .findById(id)
                                 .map(e -> new ItemPedidoResponseDto().toDto(e))
                                 .orElseThrow(() -> new RuntimeException("Id inexistente")));
+
     }
 
 }
